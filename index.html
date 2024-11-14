@@ -44,12 +44,12 @@
 
         /* Infoboxen */
         .info-section {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Zwei Spalten */
             gap: 20px;
+            width: 100%;
         }
         .info-box {
-            flex: 1;
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.5);
             border-radius: 8px;
@@ -66,14 +66,6 @@
             transform: scale(1.2);
             z-index: 10;
             background-color: #ffffff; /* Satter weißer Hintergrund für vergrößerte Boxen */
-        }
-        /* Text-Inhalt der Infoboxen */
-        .info-box-content {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .info-box.enlarged .info-box-content {
-            opacity: 1; /* Inhalt erscheint, wenn die Box vergrößert ist */
         }
 
         /* Galerie */
@@ -181,12 +173,12 @@
         <!-- Infoboxen für Kategorien -->
         <div class="info-section">
             <div class="info-box">
-                <h2 class="info-box-content">Über die Ferienwohnung</h2>
-                <p class="info-box-content">Unsere gemütliche Ferienwohnung bietet Platz für bis zu 4 Personen und liegt in einer ruhigen Gegend, perfekt für Ihren erholsamen Urlaub. Die Wohnung ist komplett ausgestattet mit allen Annehmlichkeiten, die Sie benötigen.</p>
+                <h2>Über die Ferienwohnung</h2>
+                <p>Unsere gemütliche Ferienwohnung bietet Platz für bis zu 4 Personen und liegt in einer ruhigen Gegend, perfekt für Ihren erholsamen Urlaub. Die Wohnung ist komplett ausgestattet mit allen Annehmlichkeiten, die Sie benötigen.</p>
             </div>
             <div class="info-box">
-                <h2 class="info-box-content">Ausstattung</h2>
-                <ul class="info-box-content">
+                <h2>Ausstattung</h2>
+                <ul>
                     <li>Großzügige Ferienwohnung (60m²) im Erdgeschoss</li>
                     <li>Eigene Terrasse, separater Eingang</li>
                     <li>Wohn-Schlafraum</li>
@@ -201,23 +193,23 @@
                 </ul>
             </div>
             <div class="info-box">
-                <h2 class="info-box-content">Grundriss</h2>
-                <img src="grundriss.jpg" alt="Grundriss der Ferienwohnung" class="info-box-content">
+                <h2>Grundriss</h2>
+                <img src="grundriss.jpg" alt="Grundriss der Ferienwohnung">
             </div>
             <!-- Lage-Infobox mit Klick zum Öffnen von Google Maps -->
             <div class="info-box" onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=47.870153569741625,12.314375075850984', '_blank')">
-                <h2 class="info-box-content">Lage</h2>
+                <h2>Lage</h2>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2676.422144168328!2d12.314375075850984!3d47.870153569741625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477612446351f157%3A0x434ab11e6974cad2!2sGreimharting%2021%2C%2083253%20Rimsting%2C%20Deutschland!5e0!3m2!1sde!2sat!4v1731612115505!5m2!1sde!2sat" 
-                    width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="info-box-content"></iframe>
+                    width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="info-box">
-                <h2 class="info-box-content">Freizeitangebot</h2>
-                <p class="info-box-content">Entdecken Sie vielfältige Freizeitmöglichkeiten wie Wandern, Radfahren und lokale Sehenswürdigkeiten in der Umgebung!</p>
+                <h2>Freizeitangebot</h2>
+                <p>Entdecken Sie vielfältige Freizeitmöglichkeiten wie Wandern, Radfahren und lokale Sehenswürdigkeiten in der Umgebung!</p>
             </div>
             <!-- Infobox für Galerie -->
             <div class="info-box">
-                <h2 class="info-box-content">Galerie</h2>
-                <div class="gallery info-box-content">
+                <h2>Galerie</h2>
+                <div class="gallery">
                     <img src="bild1.jpg" alt="Bild 1">
                     <img src="bild2.jpg" alt="Bild 2">
                     <img src="bild3.jpg" alt="Bild 3">
