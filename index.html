@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferienwohnung</title>
+    <style>
+        /* Allgemeines Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, #f4f4f4), 
+                        url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* Inhaltscontainer */
+        .content {
+            max-width: 900px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        header {
+            color: #333;
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        /* Infoboxen */
+        .info-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .info-box {
+            flex: 1;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Galerie */
+        .gallery {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery img {
+            width: 100%;
+            max-width: 150px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            opacity: 0.8;
+            transition: opacity 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+        .gallery img:hover {
+            opacity: 1;
+        }
+        /* Vergrößerungsstil für angeklickte Bilder */
+        .gallery img.enlarged {
+            transform: scale(3);
+            z-index: 20;
+            position: relative;
+        }
+
+        /* Kalender und Formular (verkürzt für den Fokus auf die Galerie-Interaktion) */
+    </style>
+</head>
+<body>
+    <div class="content">
+        <header>
+            <h1>Willkommen in unserer Ferienwohnung</h1>
+        </header>
+
+        <!-- Infoboxen für Kategorien -->
+        <div class="info-section">
+            <div class="info-box">
+                <h2>Über die Ferienwohnung</h2>
+                <p>Unsere gemütliche Ferienwohnung bietet Platz für bis zu 4 Personen und liegt in einer ruhigen Gegend, perfekt für Ihren erholsamen Urlaub. Die Wohnung ist komplett ausgestattet mit allen Annehmlichkeiten, die Sie benötigen.</p>
+            </div>
+            <div class="info-box">
+                <h2>Ausstattung</h2>
+                <ul>
+                    <li>Großzügige Ferienwohnung (60m²) im Erdgeschoss</li>
+                    <li>Eigene Terrasse, separater Eingang</li>
+                    <li>Wohn-Schlafraum</li>
+                    <li>Moderne Einbauküche mit Geschirrspüler, Kaffeemaschine, Kühlgefrierkombi und Mikrowelle</li>
+                    <li>Bad mit Dusche und WC</li>
+                    <li>Internetzugang</li>
+                    <li>SAT/TV</li>
+                    <li>Nichtraucher-Wohnung</li>
+                    <li>Kinderausstattung auf Anfrage</li>
+                    <li>Seniorengeeignet</li>
+                    <li>Haustier auf Anfrage</li>
+                </ul>
+            </div>
+            <div class="info-box">
+                <h2>Grundriss</h2>
+                <img src="grundriss.jpg" alt="Grundriss der Ferienwohnung">
+            </div>
+            <!-- Lage-Infobox mit Klick zum Öffnen von Google Maps -->
+            <div class="info-box" onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=47.870153569741625,12.314375075850984', '_blank')">
+                <h2>Lage</h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2676.422144168328!2d12.314375075850984!3d47.870153569741625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477612446351f157%3A0x434ab11e6974cad2!2sGreimharting%2021%2C%2083253%20Rimsting%2C%20Deutschland!5e0!3m2!1sde!2sat!4v1731612115505!5m2!1sde!2sat" 
+                    width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="info-box">
+                <h2>Freizeitangebot</h2>
+                <p>Entdecken Sie vielfältige Freizeitmöglichkeiten wie Wandern, Radfahren und lokale Sehenswürdigkeiten in der Umgebung!</p>
+            </div>
+            <!-- Infobox für Galerie -->
+            <div class="info-box">
+                <h2>Galerie</h2>
+                <div class="gallery">
+                    <img src="bild1.jpg" alt="Bild 1">
+                    <img src="bild2.jpg" alt="Bild 2">
+                    <img src="bild3.jpg" alt="Bild 3">
+                    <img src="bild4.jpg" alt="Bild 4">
+                </div>
+            </div>
+        </div>
+
+        <!-- Verfügbarkeit -->
+        <section>
+            <h2>Verfügbarkeit</h2>
+            <div class="calendar-container" id="calendar-container"></div>
+            <p><strong>Grün</strong> zeigt verfügbare Tage, <strong>Rot</strong> zeigt belegte Tage, <strong>Gelb</strong> zeigt ausgewählte Tage.</p>
+        </section>
+
+        <!-- Anfrageformular -->
+        <section>
+            <h2>Reservierungsanfrage</h2>
+            <form class="request-form" id="request-form">
+                <input type="text" id="name" placeholder="Ihr Name" required>
+                <input type="email" id="email" placeholder="Ihre E-Mail-Adresse" required>
+                <input type="text" id="selected-dates" placeholder="Ausgewählte Daten" readonly>
+                <button type="submit">Anfrage senden</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- JavaScript zur Vergrößerung der Galerie-Bilder und Verkleinerung bei Klick außerhalb -->
+    <script>
+        // Bildvergrößerung und Verkleinerung
+        const galleryImages = document.querySelectorAll('.gallery img');
+        let enlargedImage = null;
+
+        galleryImages.forEach(img => {
+            img.addEventListener('click', function(event) {
+                event.stopPropagation(); // Verhindert, dass der Klick-Handler auf das Dokument ausgelöst wird
+                // Verkleinert vorheriges vergrößertes Bild, falls vorhanden
+                if (enlargedImage && enlargedImage !== img) {
+                    enlargedImage.classList.remove('enlarged');
+                }
+                // Vergrößert das angeklickte Bild und setzt es als aktuelles vergrößertes Bild
+                img.classList.toggle('enlarged');
+                enlargedImage = img.classList.contains('enlarged') ? img : null;
+            });
+        });
+
+        // Verkleinert vergrößertes Bild bei Klick außerhalb
+        document.addEventListener('click', () => {
+            if (enlargedImage) {
+                enlargedImage.classList.remove('enlarged');
+                enlargedImage = null;
+            }
+        });
+    </script>
+</body>
+</html>
