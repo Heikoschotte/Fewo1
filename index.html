@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ferienwohnung</title>
     <style>
-        /* Hintergrundbild und Fade-Effekt */
+        /* Hintergrund und allgemeine Einstellungen */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -18,17 +18,16 @@
             background-size: cover;
             color: #333;
         }
-        
-        /* Container für Inhalte, der über dem Hintergrundbild steht */
+
         .content {
-            max-width: 800px;
+            max-width: 1000px;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.6); /* mehr Transparenz */
+            background-color: rgba(255, 255, 255, 0.6);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
         }
-        
+
         header {
             background-color: rgba(76, 175, 80, 0.9);
             color: white;
@@ -36,46 +35,71 @@
             text-align: center;
             border-radius: 8px 8px 0 0;
         }
-        
-        section {
-            margin: 20px 0;
+
+        /* Box für fade-in Effekt */
+        .info-box {
+            margin: 10px;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.7); /* leichte Transparenz */
+            background-color: rgba(255, 255, 255, 0.7);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            opacity: 0.6;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
         }
-        
+        .info-box:hover {
+            opacity: 0.9;
+        }
+        .info-box.active {
+            opacity: 1;
+        }
+
+        /* Zwei-Spalten Layout */
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .two-columns .info-box {
+            flex: 1 1 calc(50% - 20px);
+        }
+
         h1, h2 {
             color: #333;
         }
-        
+
         p {
             font-size: 18px;
             line-height: 1.6;
         }
-        
-        /* Bildergalerie */
+
+        /* Galerie */
         .gallery {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
         }
         .gallery img {
             width: 100%;
-            max-width: 150px;
             border-radius: 8px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         }
-        
+
         /* Kalender */
+        .calendar-container {
+            display: grid;
+            gap: 20px;
+        }
+        .calendar-month {
+            text-align: center;
+        }
         .calendar {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 5px;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.8);
             padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -91,36 +115,50 @@
             background-color: #c8e6c9;
         }
     </style>
+    <script>
+        // Script für Fade-in Effekt bei Klick
+        function toggleInfoBox(event) {
+            event.currentTarget.classList.toggle('active');
+        }
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            const infoBoxes = document.querySelectorAll('.info-box');
+            infoBoxes.forEach(box => box.addEventListener('click', toggleInfoBox));
+        });
+    </script>
 </head>
 <body>
     <div class="content">
         <header>
             <h1>Willkommen in unserer Ferienwohnung</h1>
         </header>
-        
-        <!-- Inhaltsbereiche -->
+
+        <!-- Informationen im Ein- und Zwei-Spalten-Layout mit Fade-In Effekt -->
         <section>
-            <h2>Über die Ferienwohnung</h2>
-            <p>Unsere gemütliche Ferienwohnung bietet Platz für bis zu 4 Personen und liegt in einer ruhigen Gegend, perfekt für Ihren erholsamen Urlaub. Die Wohnung ist komplett ausgestattet mit allen Annehmlichkeiten, die Sie benötigen.</p>
+            <div class="info-box">
+                <h2>Über die Ferienwohnung</h2>
+                <p>Unsere gemütliche Ferienwohnung bietet Platz für bis zu 4 Personen und liegt in einer ruhigen Gegend, perfekt für Ihren erholsamen Urlaub. Die Wohnung ist komplett ausgestattet mit allen Annehmlichkeiten, die Sie benötigen.</p>
+            </div>
         </section>
-        
-        <section>
-            <h2>Ausstattung</h2>
-            <ul>
-                <li>2 Schlafzimmer</li>
-                <li>Voll ausgestattete Küche</li>
-                <li>WLAN inklusive</li>
-                <li>Parkplatz vorhanden</li>
-                <li>Balkon mit schöner Aussicht</li>
-            </ul>
+
+        <section class="two-columns">
+            <div class="info-box">
+                <h2>Ausstattung</h2>
+                <ul>
+                    <li>2 Schlafzimmer</li>
+                    <li>Voll ausgestattete Küche</li>
+                    <li>WLAN inklusive</li>
+                    <li>Parkplatz vorhanden</li>
+                    <li>Balkon mit schöner Aussicht</li>
+                </ul>
+            </div>
+            <div class="info-box">
+                <h2>Preis</h2>
+                <p>Preis pro Nacht: <strong>80€</strong></p>
+                <p>Buchen Sie jetzt und genießen Sie einen unvergesslichen Aufenthalt!</p>
+            </div>
         </section>
-        
-        <section>
-            <h2>Preis</h2>
-            <p>Preis pro Nacht: <strong>80€</strong></p>
-            <p>Buchen Sie jetzt und genießen Sie einen unvergesslichen Aufenthalt!</p>
-        </section>
-        
+
         <!-- Galerie -->
         <section>
             <h2>Galerie</h2>
@@ -131,22 +169,26 @@
                 <img src="bild4.jpg" alt="Bild 4">
             </div>
         </section>
-        
-        <!-- Kalender -->
+
+        <!-- Vollständiger Kalender -->
         <section>
             <h2>Verfügbarkeitskalender</h2>
-            <div class="calendar">
-                <div class="day available">1</div>
-                <div class="day unavailable">2</div>
-                <div class="day available">3</div>
-                <div class="day available">4</div>
-                <div class="day unavailable">5</div>
-                <div class="day available">6</div>
-                <div class="day available">7</div>
-                <!-- Fügen Sie weitere Tage hinzu -->
+            <div class="calendar-container">
+                <!-- Beispiel für Januar -->
+                <div class="calendar-month">
+                    <h3>Januar</h3>
+                    <div class="calendar">
+                        <div class="day available">1</div>
+                        <div class="day unavailable">2</div>
+                        <div class="day available">3</div>
+                        <!-- Fügen Sie hier die restlichen Tage des Monats hinzu -->
+                    </div>
+                </div>
+                <!-- Weitere Monate können in ähnlicher Weise hinzugefügt werden -->
             </div>
             <p><strong>Grün</strong> zeigt verfügbare Tage, <strong>Rot</strong> zeigt belegte Tage.</p>
         </section>
     </div>
 </body>
 </html>
+
