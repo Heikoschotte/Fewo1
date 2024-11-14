@@ -8,76 +8,48 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-image: url('hintergrundbild.jpg'); /* Hier das Hintergrundbild einfügen */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background: url('hintergrundbild.jpg') center/cover fixed;
             color: #333;
         }
-        header {
-            background-color: rgba(76, 175, 80, 0.8); /* Transparenter grüner Hintergrund */
+        header, footer {
+            background: rgba(76, 175, 80, 0.8);
             color: white;
-            padding: 20px;
             text-align: center;
+            padding: 20px;
         }
         .container {
             width: 80%;
-            margin: auto;
+            margin: 20px auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9); /* Weißer Hintergrund mit Transparenz */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
-        }
-        h2 {
-            color: #333;
-        }
-        .section {
-            margin-bottom: 20px;
         }
         .section img {
             width: 100%;
-            height: auto;
             border-radius: 5px;
         }
-        .section table {
+        table, th, td {
             width: 100%;
-            border-collapse: collapse;
-        }
-        .section table, .section th, .section td {
             border: 1px solid #ddd;
             padding: 8px;
+            border-collapse: collapse;
         }
-        .section th {
-            background-color: #f2f2f2;
+        th {
+            background: #f2f2f2;
             text-align: left;
-        }
-        footer {
-            background-color: rgba(0, 0, 0, 0.8); /* Transparenter schwarzer Hintergrund */
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Ferienwohnung Spiel</h1>
-</header>
+<header><h1>Ferienwohnung Spiel</h1></header>
 
 <div class="container">
-    <!-- Preis Section -->
     <div class="section" id="preis">
         <h2>Preis</h2>
         <p>Ab 85 € pro Nacht, abhängig von der Saison und der Anzahl der Gäste.</p>
     </div>
 
-    <!-- Bilder Section -->
     <div class="section" id="bilder">
         <h2>Bilder</h2>
         <img src="ferienwohnung1.jpg" alt="Bild der Ferienwohnung">
@@ -85,41 +57,25 @@
         <img src="ferienwohnung3.jpg" alt="Bild der Ferienwohnung">
     </div>
 
-    <!-- Verfügbarkeit Section -->
     <div class="section" id="verfuegbarkeit">
         <h2>Verfügbarkeit</h2>
         <table>
-            <tr>
-                <th>Datum</th>
-                <th>Status</th>
-            </tr>
-            <tr>
-                <td>01. Januar - 10. Januar</td>
-                <td>Verfügbar</td>
-            </tr>
-            <tr>
-                <td>11. Januar - 20. Januar</td>
-                <td>Nicht Verfügbar</td>
-            </tr>
-            <tr>
-                <td>21. Januar - 31. Januar</td>
-                <td>Verfügbar</td>
-            </tr>
+            <tr><th>Datum</th><th>Status</th></tr>
+            <tr><td>01. Januar - 10. Januar</td><td>Verfügbar</td></tr>
+            <tr><td>11. Januar - 20. Januar</td><td>Nicht Verfügbar</td></tr>
+            <tr><td>21. Januar - 31. Januar</td><td>Verfügbar</td></tr>
         </table>
     </div>
 
-    <!-- Lage Section -->
     <div class="section" id="lage">
         <h2>Lage</h2>
-        <p>Die Ferienwohnung befindet sich in einer ruhigen Gegend in der Nähe des Stadtzentrums, mit einer wunderschönen Aussicht auf die umliegende Landschaft. In der Nähe befinden sich Restaurants, Einkaufsmöglichkeiten und Sehenswürdigkeiten.</p>
+        <p>Die Ferienwohnung befindet sich in einer ruhigen Gegend in der Nähe des Stadtzentrums, mit einer wunderschönen Aussicht auf die umliegende Landschaft.</p>
         <p><strong>Adresse:</strong> Musterstraße 12, 12345 Musterstadt</p>
-        <p><strong>Google Maps:</strong> <a href="https://www.google.com/maps" target="_blank">Lage auf Google Maps ansehen</a></p>
+        <p><a href="https://www.google.com/maps" target="_blank">Lage auf Google Maps ansehen</a></p>
     </div>
 </div>
 
-<footer>
-    &copy; 2024 Ferienwohnung Spiel - Alle Rechte vorbehalten
-</footer>
+<footer>&copy; 2024 Ferienwohnung Spiel - Alle Rechte vorbehalten</footer>
 
 </body>
 </html>
