@@ -5,28 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ferienwohnung</title>
     <style>
-        /* Hintergrundbild und Fade-Effekt */
+        /* Allgemeines Styling */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, #f4f4f4), 
                         url('background.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
         }
 
-        /* Hauptcontainer für Inhalt */
+        /* Inhaltscontainer */
         .content {
-            max-width: 800px;
+            max-width: 900px;
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.6);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
 
         header {
@@ -34,58 +39,30 @@
             color: white;
             padding: 10px 0;
             text-align: center;
-            border-radius: 8px 8px 0 0;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-        header:hover {
-            background-color: transparent;
-            color: #333;
+            border-radius: 8px;
+            width: 100%;
         }
 
-        /* Zweispaltiges Layout für Inhaltsboxen */
-        .two-column {
+        /* Zweispaltiges Layout für die Informationsboxen */
+        .info-section {
             display: flex;
-            gap: 10px;
+            gap: 20px;
             flex-wrap: wrap;
         }
-
-        /* Informationsboxen mit Hover- und Klick-Effekten */
-        section {
-            margin: 20px 0;
+        .info-box {
+            flex: 1;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.5);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            opacity: 0.6;
+            transition: background-color 0.3s;
             cursor: pointer;
         }
-
-        section:hover {
-            opacity: 0.8;
+        .info-box.active {
+            background-color: rgba(255, 255, 255, 0.9);
         }
-
-        section.active {
-            background-color: white;
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        section.active + section {
-            opacity: 0.3;
-            transform: scale(0.9);
-        }
-
-        .fade-content {
-            display: none;
-        }
-
-        section.active .fade-content {
-            display: block;
-        }
-
-        /* Galerie */
+        
+        /* Galerie mit Hover-Effekt */
         .gallery {
             display: flex;
             gap: 10px;
@@ -97,115 +74,58 @@
             max-width: 150px;
             border-radius: 8px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
         }
         .gallery img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Vollbild-Ansicht für Bilder */
-        .fullscreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            cursor: pointer;
-            display: none;
-        }
-        .fullscreen img {
-            max-width: 80%;
-            max-height: 80%;
-            border-radius: 8px;
-        }
-        .next-arrow {
-            position: absolute;
-            top: 50%;
-            right: 10%;
-            font-size: 30px;
-            color: white;
-            cursor: pointer;
-            transform: translateY(-50%);
+            opacity: 1;
         }
 
         /* Kalender */
-        .calendar {
+        .calendar-container {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
         }
         .month {
-            background-color: rgba(255, 255, 255, 0.8);
+            width: 200px;
             padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            cursor: pointer;
         }
-        .month:hover {
-            transform: scale(1.05);
+        .month h3 {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 10px;
         }
-        .days {
+        .calendar {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 5px;
             text-align: center;
         }
-        body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, #f4f4f4), 
-                url('background.jpg') no-repeat center center;
-    background-size: cover;
-    background-attachment: fixed; /* Hintergrundbild bleibt fixiert */
-    color: #333;
-}
-
+        .day {
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #e0e0e0;
+            cursor: pointer;
+        }
+        .day.unavailable {
+            background-color: #ffcccb;
+        }
+        .day.available {
+            background-color: #c8e6c9;
+        }
     </style>
     <script>
-        // JavaScript zum Handling von Klick- und Hover-Effekten
-        document.addEventListener("DOMContentLoaded", function () {
-            const sections = document.querySelectorAll("section");
-            sections.forEach((section) => {
-                section.addEventListener("click", () => {
-                    sections.forEach((s) => s.classList.remove("active"));
-                    section.classList.add("active");
+        document.addEventListener('DOMContentLoaded', function() {
+            // Interaktive Informationsboxen
+            document.querySelectorAll('.info-box').forEach(box => {
+                box.addEventListener('click', function() {
+                    this.classList.toggle('active');
                 });
-            });
-
-            // Galerie-Klickereignisse
-            const galleryImages = document.querySelectorAll(".gallery img");
-            const fullscreenContainer = document.querySelector(".fullscreen");
-            const fullscreenImage = document.querySelector(".fullscreen img");
-            let currentIndex = 0;
-
-            galleryImages.forEach((img, index) => {
-                img.addEventListener("click", () => {
-                    fullscreenContainer.style.display = "flex";
-                    fullscreenImage.src = img.src;
-                    currentIndex = index;
-                });
-            });
-
-            // Nächstes Bild anzeigen
-            document.querySelector(".next-arrow").addEventListener("click", () => {
-                currentIndex = (currentIndex + 1) % galleryImages.length;
-                fullscreenImage.src = galleryImages[currentIndex].src;
-            });
-
-            // Schließen der Vollbildansicht
-            fullscreenContainer.addEventListener("click", () => {
-                fullscreenContainer.style.display = "none";
             });
         });
     </script>
@@ -216,34 +136,22 @@
             <h1>Willkommen in unserer Ferienwohnung</h1>
         </header>
         
-        <!-- Erste Informationsbox -->
-        <section>
-            <h2>Über die Ferienwohnung</h2>
-            <p>Unsere gemütliche Ferienwohnung bietet Platz für bis zu 4 Personen und liegt in einer ruhigen Gegend, perfekt für Ihren erholsamen Urlaub. Die Wohnung ist komplett ausgestattet mit allen Annehmlichkeiten, die Sie benötigen.</p>
-        </section>
-
-        <!-- Zweispaltiges Layout für folgende Boxen -->
-        <div class="two-column">
-            <section>
+        <!-- Informationsboxen nebeneinander -->
+        <div class="info-section">
+            <div class="info-box">
+                <h2>Über die Ferienwohnung</h2>
+                <p>Unsere gemütliche Ferienwohnung bietet Platz für bis zu 4 Personen und liegt in einer ruhigen Gegend, perfekt für Ihren erholsamen Urlaub.</p>
+            </div>
+            <div class="info-box">
                 <h2>Ausstattung</h2>
-                <div class="fade-content">
-                    <ul>
-                        <li>2 Schlafzimmer</li>
-                        <li>Voll ausgestattete Küche</li>
-                        <li>WLAN inklusive</li>
-                        <li>Parkplatz vorhanden</li>
-                        <li>Balkon mit schöner Aussicht</li>
-                    </ul>
-                </div>
-            </section>
-            
-            <section>
-                <h2>Preis</h2>
-                <div class="fade-content">
-                    <p>Preis pro Nacht: <strong>80€</strong></p>
-                    <p>Buchen Sie jetzt und genießen Sie einen unvergesslichen Aufenthalt!</p>
-                </div>
-            </section>
+                <ul>
+                    <li>2 Schlafzimmer</li>
+                    <li>Voll ausgestattete Küche</li>
+                    <li>WLAN inklusive</li>
+                    <li>Parkplatz vorhanden</li>
+                    <li>Balkon mit schöner Aussicht</li>
+                </ul>
+            </div>
         </div>
 
         <!-- Galerie -->
@@ -257,26 +165,26 @@
             </div>
         </section>
 
-        <!-- Vollbild-Ansicht für Galerie -->
-        <div class="fullscreen">
-            <img src="" alt="Vollbild">
-            <div class="next-arrow">➔</div>
-        </div>
-
-        <!-- Verfügbarkeitskalender -->
+        <!-- Kalender für 12 Monate -->
         <section>
             <h2>Verfügbarkeitskalender</h2>
-            <div class="calendar">
-                <!-- Monatsschleife -->
+            <div class="calendar-container">
+                <!-- Kalender für jeden Monat -->
                 <div class="month">
-                    <div class="month-name">Januar</div>
-                    <div class="days">
-                        <div class="day available">1</div>
-                        <div class="day unavailable">2</div>
-                        <!-- Weitere Tage hier ... -->
+                    <h3>Januar</h3>
+                    <div class="calendar">
+                        <!-- 31 Tage im Januar -->
+                        ${[...Array(31)].map((_, i) => `<div class="day available">${i + 1}</div>`).join('')}
                     </div>
                 </div>
-                <!-- Weitere Monate... -->
+                <div class="month">
+                    <h3>Februar</h3>
+                    <div class="calendar">
+                        <!-- 28 Tage im Februar -->
+                        ${[...Array(28)].map((_, i) => `<div class="day available">${i + 1}</div>`).join('')}
+                    </div>
+                </div>
+                <!-- Fügen Sie die anderen Monate mit der richtigen Anzahl an Tagen hinzu -->
             </div>
             <p><strong>Grün</strong> zeigt verfügbare Tage, <strong>Rot</strong> zeigt belegte Tage.</p>
         </section>
