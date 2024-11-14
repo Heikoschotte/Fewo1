@@ -35,8 +35,7 @@
         }
 
         header {
-            background-color: rgba(76, 175, 80, 0.9);
-            color: white;
+            color: #333;
             padding: 10px 0;
             text-align: center;
             border-radius: 8px;
@@ -62,7 +61,22 @@
             background-color: rgba(255, 255, 255, 0.9);
         }
         
-        /* Galerie mit Hover-Effekt */
+        /* Bild im Grundriss-Infobox */
+        .info-box img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Google Maps iframe in der Lage-Box */
+        .info-box iframe {
+            width: 100%;
+            height: 200px;
+            border: 0;
+            border-radius: 8px;
+        }
+
+        /* Galerie mit Hover-Effekt und Klickvergrößerung */
         .gallery {
             display: flex;
             gap: 10px;
@@ -75,10 +89,16 @@
             border-radius: 8px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
             opacity: 0.7;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s, transform 0.3s;
+            cursor: pointer;
         }
         .gallery img:hover {
             opacity: 1;
+        }
+        .gallery img.enlarged {
+            transform: scale(2); /* Vergrößerungsfaktor */
+            z-index: 10;
+            position: relative;
         }
 
         /* Kalender */
@@ -127,6 +147,13 @@
                     this.classList.toggle('active');
                 });
             });
+            
+            // Bildvergrößerung bei Klick
+            document.querySelectorAll('.gallery img').forEach(img => {
+                img.addEventListener('click', function() {
+                    this.classList.toggle('enlarged');
+                });
+            });
         });
     </script>
 </head>
@@ -140,17 +167,36 @@
         <div class="info-section">
             <div class="info-box">
                 <h2>Über die Ferienwohnung</h2>
-                <p>Unsere gemütliche Ferienwohnung bietet Platz für bis zu 4 Personen und liegt in einer ruhigen Gegend, perfekt für Ihren erholsamen Urlaub.</p>
+                <p>Unsere gemütliche Ferienwohnung bietet Platz für bis zu 4 Personen und liegt in einer ruhigen Gegend, perfekt für Ihren erholsamen Urlaub. Die Wohnung ist komplett ausgestattet mit allen Annehmlichkeiten, die Sie benötigen.</p>
             </div>
             <div class="info-box">
                 <h2>Ausstattung</h2>
                 <ul>
-                    <li>2 Schlafzimmer</li>
-                    <li>Voll ausgestattete Küche</li>
-                    <li>WLAN inklusive</li>
-                    <li>Parkplatz vorhanden</li>
-                    <li>Balkon mit schöner Aussicht</li>
+                    <li>Großzügige Ferienwohnung (60m²) im Erdgeschoss</li>
+                    <li>Eigene Terrasse, separater Eingang</li>
+                    <li>Wohn-Schlafraum</li>
+                    <li>Moderne Einbauküche mit Geschirrspüler, Kaffeemaschine, Kühlgefrierkombi und Mikrowelle</li>
+                    <li>Bad mit Dusche und WC</li>
+                    <li>Internetzugang</li>
+                    <li>SAT/TV</li>
+                    <li>Nichtraucher-Wohnung</li>
+                    <li>Kinderausstattung auf Anfrage</li>
+                    <li>Seniorengeeignet</li>
+                    <li>Haustier auf Anfrage</li>
                 </ul>
+            </div>
+            <!-- Neue Infobox für Grundriss -->
+            <div class="info-box">
+                <h2>Grundriss</h2>
+                <img src="grundriss.jpg" alt="Grundriss der Ferienwohnung">
+            </div>
+            <!-- Neue Infobox für Lage -->
+            <div class="info-box">
+                <h2>Lage</h2>
+                <!-- Google Maps iframe, ersetzen Sie "YOUR_GOOGLE_MAPS_URL" mit dem echten Google Maps-Link -->
+                <iframe src="https://www.google.com/maps/embed?pb=YOUR_GOOGLE_MAPS_URL" 
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </div>
 
@@ -173,14 +219,12 @@
                 <div class="month">
                     <h3>Januar</h3>
                     <div class="calendar">
-                        <!-- 31 Tage im Januar -->
                         ${[...Array(31)].map((_, i) => `<div class="day available">${i + 1}</div>`).join('')}
                     </div>
                 </div>
                 <div class="month">
                     <h3>Februar</h3>
                     <div class="calendar">
-                        <!-- 28 Tage im Februar -->
                         ${[...Array(28)].map((_, i) => `<div class="day available">${i + 1}</div>`).join('')}
                     </div>
                 </div>
