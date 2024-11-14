@@ -298,3 +298,91 @@
 </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferienwohnung</title>
+    <style>
+        /* Allgemeines Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, #f4f4f4), 
+                        url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* Inhaltscontainer */
+        .content {
+            max-width: 900px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        header {
+            color: #333;
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        /* Kalender */
+        .calendar-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .month {
+            width: 200px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .month h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        .day {
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .available {
+            background-color: #c8e6c9;
+            color: #333;
+        }
+        .booked {
+            background-color: #ffcccb;
+            color: #333;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Monate und ihre Anzahl an Tagen
+            const months = [
+                { name: "Januar", days: 31 },
+                { name: "Februar", days: 28 },
+                { name: "März",
