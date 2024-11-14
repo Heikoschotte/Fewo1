@@ -3,85 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ferienwohnung Spiel</title>
+    <title>Ferienwohnung</title>
     <style>
+        /* Allgemeines Styling */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            background: url('hintergrundbild.jpg') center/cover no-repeat fixed;
+            padding: 0;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, #f4f4f4), 
+                        url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
         }
-        header, footer {
-            background: rgba(76, 175, 80, 0.8);
+
+        /* Inhaltscontainer */
+        .content {
+            max-width: 900px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        header {
+            background-color: rgba(76, 175, 80, 0.9);
             color: white;
+            padding: 10px 0;
             text-align: center;
-            padding: 20px;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-        }
-        h2 {
-            color: #333;
-        }
-        .section img {
+            border-radius: 8px;
             width: 100%;
+        }
+
+        /* Zweispaltiges Layout für die Informationsboxen */
+        .info-section {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .info-box {
+            flex: 1;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        .info-box.active {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Galerie mit Hover-Effekt */
+        .gallery {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery img {
+            width: 100%;
+            max-width: 150px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .gallery img:hover {
+            opacity: 1;
+        }
+
+        /* Kalender */
+        .calendar-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .month {
+            width: 200px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .month h3 {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+        }
+        .day {
+            padding: 10px;
             border-radius: 5px;
-            margin-top: 10px;
+            background-color: #e0e0e0;
+            cursor: pointer;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .day.unavailable {
+            background-color: #ffcccb;
         }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        th {
-            background: #f2f2f2;
-            text-align: left;
+        .day.available {
+            background-color: #c8e6c9;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Interaktive Informationsboxen
+            document.querySelectorAll('.info-box').forEach(box => {
+                box.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+        });
+    </script>
 </head>
 <body>
+    <div class="content">
+        <header>
+            <h1>Willkommen in unserer Ferienwohnung</h1>
+        </header>
+        
+        <!-- Informationsboxen nebeneinander -->
+        <div class="info-section">
+            <div class="info-box">
+                <h2>Über die Ferienwohnung</h2>
+                <p>Unsere gemütliche Ferienwohnung bietet Platz für bis zu 4 Personen und liegt in einer ruhigen Gegend, perfekt für Ihren erholsamen Urlaub.</p>
+            </div>
+            <div class="info-box">
+                <h2>Ausstattung</h2>
+                <ul>
+                    <li>2 Schlafzimmer</li>
+                    <li>Voll ausgestattete Küche</li>
+                    <li>WLAN inklusive</li>
+                    <li>Parkplatz vorhanden</li>
+                    <li>Balkon mit schöner Aussicht</li>
+                </ul>
+            </div>
+        </div>
 
-<header><h1>Ferienwohnung Spiel</h1></header>
+        <!-- Galerie -->
+        <section>
+            <h2>Galerie</h2>
+            <div class="gallery">
+                <img src="bild1.jpg" alt="Bild 1">
+                <img src="bild2.jpg" alt="Bild 2">
+                <img src="bild3.jpg" alt="Bild 3">
+                <img src="bild4.jpg" alt="Bild 4">
+            </div>
+        </section>
 
-<div class="container">
-    <div class="section" id="preis">
-        <h2>Preis</h2>
-        <p>Ab 85 € pro Nacht, abhängig von der Saison und der Anzahl der Gäste.</p>
+        <!-- Kalender für 12 Monate -->
+        <section>
+            <h2>Verfügbarkeitskalender</h2>
+            <div class="calendar-container">
+                <!-- Kalender für jeden Monat -->
+                <div class="month">
+                    <h3>Januar</h3>
+                    <div class="calendar">
+                        <!-- 31 Tage im Januar -->
+                        ${[...Array(31)].map((_, i) => `<div class="day available">${i + 1}</div>`).join('')}
+                    </div>
+                </div>
+                <div class="month">
+                    <h3>Februar</h3>
+                    <div class="calendar">
+                        <!-- 28 Tage im Februar -->
+                        ${[...Array(28)].map((_, i) => `<div class="day available">${i + 1}</div>`).join('')}
+                    </div>
+                </div>
+                <!-- Fügen Sie die anderen Monate mit der richtigen Anzahl an Tagen hinzu -->
+            </div>
+            <p><strong>Grün</strong> zeigt verfügbare Tage, <strong>Rot</strong> zeigt belegte Tage.</p>
+        </section>
     </div>
-
-    <div class="section" id="bilder">
-        <h2>Bilder</h2>
-        <img src="ferienwohnung1.jpg" alt="Bild der Ferienwohnung">
-        <img src="ferienwohnung2.jpg" alt="Bild der Ferienwohnung">
-        <img src="ferienwohnung3.jpg" alt="Bild der Ferienwohnung">
-    </div>
-
-    <div class="section" id="verfuegbarkeit">
-        <h2>Verfügbarkeit</h2>
-        <table>
-            <tr><th>Datum</th><th>Status</th></tr>
-            <tr><td>01. Januar - 10. Januar</td><td>Verfügbar</td></tr>
-            <tr><td>11. Januar - 20. Januar</td><td>Nicht Verfügbar</td></tr>
-            <tr><td>21. Januar - 31. Januar</td><td>Verfügbar</td></tr>
-        </table>
-    </div>
-
-    <div class="section" id="lage">
-        <h2>Lage</h2>
-        <p>Die Ferienwohnung befindet sich in einer ruhigen Gegend in der Nähe des Stadtzentrums, mit einer wunderschönen Aussicht auf die umliegende Landschaft.</p>
-        <p><strong>Adresse:</strong> Musterstraße 12, 12345 Musterstadt</p>
-        <p><a href="https://www.google.com/maps" target="_blank">Lage auf Google Maps ansehen</a></p>
-    </div>
-</div>
-
-<footer>&copy; 2024 Ferienwohnung Spiel - Alle Rechte vorbehalten</footer>
-
 </body>
 </html>
