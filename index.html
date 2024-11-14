@@ -200,3 +200,274 @@
     </div>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferienwohnung</title>
+    <style>
+        /* Hintergrundbild und Fade-Effekt */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, #f4f4f4), 
+                        url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+
+        /* Hauptcontainer für Inhalt */
+        .content {
+            max-width: 800px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        header {
+            background-color: rgba(76, 175, 80, 0.9);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+
+        /* Erste Informationsbox mit grünem Hintergrund und Hover-Effekt */
+        .content > section:first-of-type {
+            background-color: #4CAF50;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            color: white;
+        }
+        .content > section:first-of-type:hover {
+            background-color: transparent;
+            color: #333;
+        }
+
+        /* Zweispaltiges Layout für Inhaltsboxen und Hover-Effekte */
+        .two-column {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        section {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+        section:hover {
+            opacity: 0.8;
+        }
+        section.active {
+            opacity: 1;
+        }
+        .fade-content {
+            display: none;
+        }
+        section.active .fade-content {
+            display: block;
+        }
+
+        /* Galerie */
+        .gallery {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery img {
+            width: 100%;
+            max-width: 150px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        .gallery-modal.active {
+            display: flex;
+        }
+        .gallery-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+        }
+
+        /* Kalender */
+        .calendar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: opacity 0.3s ease;
+            opacity: 0.6;
+        }
+        .calendar:hover {
+            opacity: 0.8;
+        }
+        .calendar.active {
+            opacity: 1;
+        }
+        .month {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .month-name {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+        }
+        .day {
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #e0e0e0;
+        }
+        .unavailable {
+            background-color: #ffcccb;
+        }
+        .available {
+            background-color: #c8e6c9;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Toggle Informationsboxen
+            const sections = document.querySelectorAll("section");
+            sections.forEach((section) => {
+                section.addEventListener("click", () => {
+                    section.classList.toggle("active");
+                });
+            });
+
+            // Galerie-Modale Anzeige
+            const galleryImages = document.querySelectorAll(".gallery img");
+            const modal = document.createElement("div");
+            modal.className = "gallery-modal";
+            document.body.appendChild(modal);
+            modal.innerHTML = "<img src='' alt='Vollbild'><button>Next</button>";
+            const modalImage = modal.querySelector("img");
+            let currentImageIndex = 0;
+
+            galleryImages.forEach((img, index) => {
+                img.addEventListener("click", () => {
+                    modalImage.src = img.src;
+                    modal.classList.add("active");
+                    currentImageIndex = index;
+                });
+            });
+
+            modal.addEventListener("click", () => {
+                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                modalImage.src = galleryImages[currentImageIndex].src;
+            });
+
+            // Kalender: Übersicht
+            const calendar = document.querySelector(".calendar");
+            calendar.addEventListener("click", () => {
+                calendar.classList.toggle("active");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="content">
+        <header>
+            <h1>Willkommen in unserer Ferienwohnung</h1>
+        </header>
+        
+        <!-- Erste Informationsbox -->
+        <section>
+            <h2>Über die Ferienwohnung</h2>
+            <p>Unsere gemütliche Ferienwohnung bietet Platz für bis zu 4 Personen und liegt in einer ruhigen Gegend, perfekt für Ihren erholsamen Urlaub. Die Wohnung ist komplett ausgestattet mit allen Annehmlichkeiten, die Sie benötigen.</p>
+        </section>
+
+        <!-- Zweispaltiges Layout für folgende Boxen -->
+        <div class="two-column">
+            <section>
+                <h2>Ausstattung</h2>
+                <div class="fade-content">
+                    <ul>
+                        <li>2 Schlafzimmer</li>
+                        <li>Voll ausgestattete Küche</li>
+                        <li>WLAN inklusive</li>
+                        <li>Parkplatz vorhanden</li>
+                        <li>Balkon mit schöner Aussicht</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
+                <h2>Preis</h2>
+                <div class="fade-content">
+                    <p>Preis pro Nacht: <strong>80€</strong></p>
+                    <p>Buchen Sie jetzt und genießen Sie einen unvergesslichen Aufenthalt!</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Galerie -->
+        <section>
+            <h2>Galerie</h2>
+            <div class="gallery">
+                <img src="bild1.jpg" alt="Bild 1">
+                <img src="bild2.jpg" alt="Bild 2">
+                <img src="bild3.jpg" alt="Bild 3">
+                <img src="bild4.jpg" alt="Bild 4">
+            </div>
+        </section>
+
+        <!-- Verfügbarkeitskalender -->
+        <section>
+            <h2>Verfügbarkeitskalender</h2>
+            <div class="calendar">
+                <!-- Monatsschleife -->
+                <div class="month">
+                    <div class="month-name">Januar</div>
+                    <div class="days">
+                        <div class="day available">1</div>
+                        <div class="day unavailable">2</div>
+                        <!-- Weitere Tage hier ... -->
+                    </div>
+                </div>
+                <!-- Weitere Monate... -->
+            </div>
+            <p><strong>Grün</strong> zeigt verfügbare Tage, <strong>Rot</strong> zeigt belegte Tage.</p>
+        </section>
+    </div>
+</body>
+</html>
+
